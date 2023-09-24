@@ -1,45 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:test_statemanagement/counter_controller.dart';
-import 'package:test_statemanagement/secound_page.dart';
+import 'package:get/get_state_manager/src/simple/get_state.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+import 'counter_controller.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return GetMaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
+class SecoundPage extends StatelessWidget {
+  SecoundPage({super.key});
   CounterController controller = Get.put(CounterController());
   @override
   Widget build(BuildContext context) {
     return GetBuilder<CounterController>(builder: (contexts) {
       return Scaffold(
         appBar: AppBar(
-          title: Text(widget.title),
+          title: Text('Second Page'),
         ),
         body: Center(
           child: Column(
@@ -73,14 +48,6 @@ class _MyHomePageState extends State<MyHomePage> {
               tooltip: 'Increment',
               heroTag: 'in',
               child: const Icon(Icons.add),
-            ),
-            FloatingActionButton(
-              onPressed: () {
-                Get.to(() => SecoundPage());
-              },
-              tooltip: 'next',
-              heroTag: 'next',
-              child: const Icon(Icons.forward),
             ),
           ],
         ),
